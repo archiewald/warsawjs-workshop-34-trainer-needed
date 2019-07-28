@@ -6,11 +6,15 @@
     }
 
     function reconnect() {
-        const time = 5000;
+        const time = getRandom(5000, 10000);
         setTimeout(() => {
             console.log(`Reconnect after ${time} ms`);
             setupServer();
         }, time);
+    }
+
+    function getRandom(min, max) {
+        return Math.random() * (max - min) + min;
     }
 
     function setupServer() {
