@@ -5,6 +5,14 @@
         socket.send(JSON.stringify(data));
     }
 
+    function reconnect() {
+        const time = 5000;
+        setTimeout(() => {
+            console.log(`Reconnect after ${time} ms`);
+            setupServer();
+        }, time);
+    }
+
     function setupServer() {
         socket = new WebSocket(root.app.config.url);
 
@@ -26,9 +34,11 @@
         });
         socket.addEventListener('close', () => {
             console.log('close');
+            reconnect();
         });
         socket.addEventListener('error', () => {
             console.log('error');
+            reconnect();
         });
     }
 
