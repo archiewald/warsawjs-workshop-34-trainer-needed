@@ -15,7 +15,7 @@ module.exports = (client) => {
         try {
             console.log('message: ', JSON.parse(message));
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     });
     client.on('error', () => {

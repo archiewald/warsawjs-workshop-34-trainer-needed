@@ -4,20 +4,22 @@
         const url = 'ws://localhost:3000';
         const socket = new WebSocket(url);
 
-        // CLIENT
-
-        // document.getElementById('alarm').addEventListener(() => {
-        //     debugger;
-        // });
+        document.querySelector('#alarm').addEventListener('click', () => {
+            const payload = { action: 'alarm' };
+            socket.send(JSON.stringify(payload));
+        });
 
         socket.addEventListener('open', () => {
             console.log('open');
-            const payload = { action: 'alarm' };
 
-            socket.send(JSON.stringify(payload));
         });
-        socket.addEventListener('message', () => {
+        socket.addEventListener('message', (event) => {
             console.log('message');
+            try {
+                console.log('message: ', JSON.parse(event.data));
+            } catch (error) {
+                console.error(error);
+            }
         });
         socket.addEventListener('close', () => {
             console.log('close');
