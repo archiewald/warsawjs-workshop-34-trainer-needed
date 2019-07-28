@@ -11,12 +11,16 @@
 
         socket.addEventListener('open', () => {
             console.log('open');
-
         });
         socket.addEventListener('message', (event) => {
             console.log('message');
             try {
-                console.log('message: ', JSON.parse(event.data));
+                const message = JSON.parse(event.data);
+                console.log('message: ', message);
+
+                const customEvent = new CustomEvent('alarm-notify', message);
+                document.dispatchEvent(customEvent);
+
             } catch (error) {
                 console.error(error);
             }

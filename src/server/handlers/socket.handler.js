@@ -1,7 +1,7 @@
 const { registerClient, deleteClient, broadcast } = require('../services/client-manager');
 
 module.exports = (client) => {
-    client.send(JSON.stringify({ obiad: '13:15' }));
+    // client.send(JSON.stringify({ obiad: '13:15' }));
     registerClient(client);
 
     client.on('open', () => {
