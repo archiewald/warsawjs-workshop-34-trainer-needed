@@ -9,5 +9,5 @@ dotenv.config({
 
 const port = Number(process.env.PORT);
 const settings = { port };
-
 const server = new ws.Server(settings);
+require('./handlers/server.handler')(server);
