@@ -1,4 +1,4 @@
-const { registerClient, deleteClient } = require('../services/client-manager');
+const { registerClient, deleteClient, broadcast } = require('../services/client-manager');
 
 module.exports = (client) => {
     client.send(JSON.stringify({ obiad: '13:15' }));
@@ -14,6 +14,7 @@ module.exports = (client) => {
     client.on('message', (message) => {
         try {
             console.log('message: ', JSON.parse(message));
+            broadcast(client, message);
         } catch (error) {
             console.error(error);
         }

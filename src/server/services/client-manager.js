@@ -23,7 +23,17 @@ function deleteClient(client) {
     clients.splice(index, 1);
 }
 
+function broadcast(broadcastingClient, message) {
+    clients.forEach((eachClient) => {
+        if (broadcastingClient === eachClient) {
+            return;
+        }
+        eachClient.send(message);
+    });
+}
+
 module.exports = {
     registerClient,
     deleteClient,
+    broadcast,
 };
