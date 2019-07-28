@@ -4,9 +4,17 @@
         const url = 'ws://localhost:3000';
         const socket = new WebSocket(url);
 
+        // CLIENT
+
+        // document.getElementById('alarm').addEventListener(() => {
+        //     debugger;
+        // });
+
         socket.addEventListener('open', () => {
             console.log('open');
-            socket.send('hello darkness');
+            const payload = { action: 'alarm' };
+
+            socket.send(JSON.stringify(payload));
         });
         socket.addEventListener('message', () => {
             console.log('message');
